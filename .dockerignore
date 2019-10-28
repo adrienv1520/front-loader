@@ -1,0 +1,12 @@
+.git
+app/test/
+node_modules/
+.dockerignore
+*.DS_Store
+.eslintignore
+.eslintrc
+.gitignore
+CHANGELOG.md
+Dockerfile
+npm-debug.log
+README.md
