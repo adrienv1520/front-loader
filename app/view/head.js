@@ -77,6 +77,10 @@ const head = `
       background-color: var(--colorBackgroundParams);
     }
 
+    .input-select:hover {
+      box-shadow: 0.2rem 0.8rem 1.6rem black;
+    }
+
     .input-select:focus {
       outline: none;
       box-shadow: 0.2rem 0.8rem 1.6rem black;
