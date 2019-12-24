@@ -1,6 +1,6 @@
 {
   "name": "front-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small Node.js app that loads a large list of contacts from a JSON file into a HTML dropdown component",
   "author": "Adrien Valcke",
   "main": "app/index.js",

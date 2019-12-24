@@ -1,11 +1,13 @@
 const http = require('http');
-const { debuglog } = require('util');
+const { debuglog, promisify } = require('util');
 const path = require('path');
 const fs = require('fs');
+const stream = require('stream');
 const JSONStream = require('JSONStream');
 const { stream: { getFileStream }, object: { is } } = require('./helpers');
 const htmlTransformer = require('./htmlTransformer');
 
+const pipeline = promisify(stream.pipeline);
 const port = process.env.PORT || 2000;
 const debug = debuglog('front-loader app');
 const contactsPath = path.join(__dirname, './contacts/index.json');
@@ -37,7 +39,12 @@ const httpServer = http.createServer(async (request, response) => {
       } else {
         hasContactsChanged = false;
         response.statusCode = 200;
-        json.pipe(JSONStream.parse('*')).pipe(htmlTransformer()).pipe(response, { end: true });
+        await pipeline(
+          json,
+          JSONStream.parse('*'),
+          htmlTransformer(),
+          response,
+        );
       }
     } catch (err) {
       debug(err);
